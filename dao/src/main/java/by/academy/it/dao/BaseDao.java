@@ -16,7 +16,7 @@ public class BaseDao<T> implements Dao<T> {
 
     private static Logger log = Logger.getLogger(BaseDao.class);
     private Transaction transaction = null;
-    private static HibernateUtil util = HibernateUtil.getHibernateUtil();
+    static HibernateUtil util = HibernateUtil.getHibernateUtil();
 
     public BaseDao() {
     }
