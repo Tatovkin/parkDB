@@ -1,8 +1,8 @@
 package by.academy.it.command;
 
 
-import by.academy.it.dao.UserDao;
-import by.academy.it.dao.exceptions.DaoException;
+import by.academy.it.Services;
+import by.academy.it.UserService;
 import by.academy.it.entities.User;
 import org.apache.log4j.Logger;
 
@@ -28,12 +28,8 @@ public class CmdLogin extends Action {
                 return null;
             }
 
-            UserDao dao = UserDao.getDao();
-            try {
-                user = dao.get(user);
-            } catch (DaoException e) {
-                log.error(e);
-            }
+            UserService service = Services.getUserService();
+            user = service.get(user);
 
             if (user != null) {
                 HttpSession session = request.getSession();

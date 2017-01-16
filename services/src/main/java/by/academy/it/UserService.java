@@ -18,6 +18,7 @@ public class UserService implements IService<User> {
             dao.saveOrUpdate(user);
         } catch (DaoException e) {
             log.error(e.getMessage(), e);
+            return null;
         }
         return user;
     }
@@ -29,6 +30,7 @@ public class UserService implements IService<User> {
             user = dao.get(id);
         } catch (DaoException e) {
             log.error(e.getMessage(), e);
+            return null;
         }
         return user;
     }
@@ -40,6 +42,7 @@ public class UserService implements IService<User> {
             user = dao.load(id);
         } catch (DaoException e) {
             log.error(e.getMessage(), e);
+            return null;
         }
         return user;
     }

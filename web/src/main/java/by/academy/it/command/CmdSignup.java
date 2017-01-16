@@ -1,7 +1,7 @@
 package by.academy.it.command;
 
-import by.academy.it.dao.UserDao;
-import by.academy.it.dao.exceptions.DaoException;
+import by.academy.it.Services;
+import by.academy.it.UserService;
 import by.academy.it.entities.User;
 import by.academy.it.entities.UserRole;
 import org.apache.log4j.Logger;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 public class CmdSignup extends Action {
 
     private static Logger log = Logger.getLogger(CmdSignup.class);
-    private static UserDao dao = UserDao.getDao();
+    private static UserService service = Services.getUserService();
 
     @Override
     Action execute(HttpServletRequest request) {
@@ -29,10 +29,10 @@ public class CmdSignup extends Action {
         }
 
         if (user.getLogin() != null & user.getPassword() != null & user.getEmail() != null) {
-            try {
-                User createdUser = dao.saveOrUpdate(user);
-            } catch (DaoException e) {
-                log.error(e);
+            User createdUser = service.saveOrUpdate(user);
+            if (createdUser == null) {
+                request.setAttribute(Messages.msgError, "FILL ERROR");
+                return null;
             }
             request.setAttribute(Messages.msgMessage, "USER ADDED");
             return Actions.LOGIN.action;
