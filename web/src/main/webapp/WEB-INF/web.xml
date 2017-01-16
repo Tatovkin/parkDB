@@ -7,12 +7,7 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          metadata-complete="true">
 
 
-  <display-name>Archetype Created Web Application</display-name>
-  <!--
-   Для любого сервлета нужно определить два тега servlet и servlet-mapping.
-   Важно чтобы внутри каждого из этих тегов были теги servlet-name
-   и имя сервлета в них было одинаковым!!! Здесь это имя Controller
-   -->
+  <display-name>Park DB Application</display-name>
   <servlet>
     <servlet-name>FrontController</servlet-name>
     <servlet-class>by.academy.it.command.FrontController</servlet-class>

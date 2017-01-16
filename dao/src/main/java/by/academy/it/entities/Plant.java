@@ -1,10 +1,11 @@
 package by.academy.it.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table
-public class Plant {
+public class Plant implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
