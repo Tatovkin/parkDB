@@ -3,11 +3,11 @@ package by.academy.it.entities;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@DiscriminatorValue("T")
+@PrimaryKeyJoinColumn(name = "PLANT_ID")
 @DynamicInsert
 @DynamicUpdate
 public class Tree extends Plant {

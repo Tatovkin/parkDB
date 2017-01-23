@@ -5,9 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "PLANT_TYPE", discriminatorType = DiscriminatorType.CHAR)
-@DiscriminatorValue("P")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Plant implements Serializable {
 
     private static final long serialVersionUID = 1L;

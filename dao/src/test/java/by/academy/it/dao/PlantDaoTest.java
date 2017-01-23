@@ -1,6 +1,7 @@
 package by.academy.it.dao;
 
 import by.academy.it.dao.exceptions.DaoException;
+import by.academy.it.entities.Bush;
 import by.academy.it.entities.Plant;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -87,6 +88,23 @@ public class PlantDaoTest extends TestCase {
         }
 
         Assert.assertEquals(updatedPlant, plant);
+    }
+
+    public void testCreateBush() {
+        Bush bush = new Bush();
+        bush.setSerialNumber(plant.getSerialNumber());
+        bush.setLongitude(plant.getLongitude());
+        bush.setLatitude(plant.getLatitude());
+        bush.setCrown("awesome crown");
+
+        BaseDao<Bush> baseDao = new BaseDao<>();
+        try {
+            baseDao.saveOrUpdate(bush);
+        } catch (DaoException e) {
+            log.error(e.getMessage(), e);
+        }
+
+        //TODO Assert
     }
 
 

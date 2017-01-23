@@ -14,6 +14,8 @@
 
         <mapping class="by.academy.it.entities.User" />
         <mapping class="by.academy.it.entities.Plant" />
+        <mapping class="by.academy.it.entities.Bush" />
+        <mapping class="by.academy.it.entities.Tree" />
     </session-factory>
 </hibernate-configuration>
 

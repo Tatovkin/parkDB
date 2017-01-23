@@ -6,7 +6,7 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 @Access(AccessType.PROPERTY)
-public abstract class Trunk {
+public class Trunk {
 
     private boolean colored;
 
