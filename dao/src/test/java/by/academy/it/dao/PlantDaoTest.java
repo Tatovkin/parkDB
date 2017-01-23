@@ -2,7 +2,6 @@ package by.academy.it.dao;
 
 import by.academy.it.dao.exceptions.DaoException;
 import by.academy.it.entities.Plant;
-import by.academy.it.entities.PlantType;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.apache.log4j.Logger;
@@ -46,7 +45,6 @@ public class PlantDaoTest extends TestCase {
     private Plant getPlant() {
         if (plant == null) {
             plant = new Plant();
-            plant.setType(PlantType.TREE.name());
             plant.setSerialNumber(random.nextInt(9999));
             plant.setLongitude(randomCoordinate(random.nextInt(180)));
             plant.setLongitude(randomCoordinate(random.nextInt(90)));
@@ -75,7 +73,6 @@ public class PlantDaoTest extends TestCase {
         plant = getPlant();
 
         // update
-        plant.setType(PlantType.BUSH.name());
         plant.setSerialNumber(random.nextInt(999));
         plant.setLongitude(randomCoordinate(random.nextInt(180)));
         plant.setLatitude(randomCoordinate(random.nextInt(90)));
