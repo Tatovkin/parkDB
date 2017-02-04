@@ -28,17 +28,17 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href='do?command=Main'>Статистика</a></li>
-                    ${user==null?
+                    ${account==null?
                             "<li><a href='do?command=Login'>Создать новую заявку</a></li>"
                             :
                             "<li><a href='do?command=CreateAd'>Создать новую заявку</a></li>"
                             }
-                    ${user==null?
+                    ${account==null?
                             "<li><a href='do?command=Login'>Все заявки</a></li>"
                             :
                             "<li><a href='do?command=Showallads'>Все заявки</a></li>"
                             }
-                    ${user==null?
+                    ${account==null?
                             "<li><a href='do?command=Login'>Список пользователей</a></li>"
                             :
                             "<li><a href='do?command=ShowUsers'>Список пользователей</a></li>"
@@ -46,12 +46,12 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="do?command=Signup">Зарегистрироваться</a></li>
-                    ${user==null?
+                    ${account==null?
                             "<li><a href='do?command=Login'>Войти</a></li>"
                             :
                             "<li><a href='do?command=Profile'>Профиль</a></li>"
                             }
-                    ${user==null?
+                    ${account==null?
                             ""
                             :
                             "<li><a href='do?command=Logout'>Выйти</a></li>"

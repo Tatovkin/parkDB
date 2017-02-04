@@ -1,9 +1,8 @@
 package by.academy.it.command;
 
-import by.academy.it.Services;
-import by.academy.it.UserService;
-import by.academy.it.entities.User;
-import by.academy.it.entities.UserRole;
+import by.academy.it.AccountService;
+import by.academy.it.entities.Account;
+import by.academy.it.entities.Role;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,25 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 public class CmdSignup extends Action {
 
     private static Logger log = Logger.getLogger(CmdSignup.class);
-    private static UserService service = Services.getUserService();
+    private static AccountService service = new AccountService();
 
     @Override
     Action execute(HttpServletRequest request) {
-        User user = new User();
+        Account account = new Account();
         try {
-            user.setLogin(Form.getString(request, "login", Patterns.LOGIN));
-            user.setPassword(Form.getString(request, "password", Patterns.PASSWORD));
-            user.setEmail(Form.getString(request, "email", Patterns.EMAIL));
-            user.setRole(UserRole.FORESTER.name());
+            account.setLogin(Form.getString(request, "login", Patterns.LOGIN));
+            account.setPassword(Form.getString(request, "password", Patterns.PASSWORD));
+            account.setEmail(Form.getString(request, "email", Patterns.EMAIL));
+            account.setRole(Role.FORESTER.name());
         } catch (Exception e) {
             request.setAttribute(Messages.msgError, "NO VALID FIELDS");
             log.error(e);
             return null;
         }
 
-        if (user.getLogin() != null & user.getPassword() != null & user.getEmail() != null) {
-            User createdUser = service.saveOrUpdate(user);
-            if (createdUser == null) {
+        if (account.getLogin() != null & account.getPassword() != null & account.getEmail() != null) {
+            Account createdAccount = service.saveOrUpdate(account);
+            if (createdAccount == null) {
                 request.setAttribute(Messages.msgError, "FILL ERROR");
                 return null;
             }

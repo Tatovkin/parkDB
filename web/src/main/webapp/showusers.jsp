@@ -32,30 +32,30 @@
 </div>
 <br>
 <!-- Коллекцию listUser мы получаем по get из команды сервлета UserForm -->
-<c:forEach items="${users}" var="user">
+<c:forEach items="${users}" var="account">
     <div class="row">
-        <form class="form-user-${user.ID}" action="do?command=ShowUsers" method=POST>
+        <form class="form-account-${account.ID}" action="do?command=ShowUsers" method=POST>
             <div class=col-sm-1>
-                <input id="user_id_${user.ID}" name="ID" type="text"
-                       value="${user.ID}" class="form-control input-sm">
+                <input id="user_id_${account.ID}" name="ID" type="text"
+                       value="${account.ID}" class="form-control input-sm">
             </div>
             <div class=col-sm-2>
                 <input id="textinput" name="Login" type="text"
-                       value="${user.login}" class="form-control input-sm">
+                       value="${account.login}" class="form-control input-sm">
             </div>
             <div class=col-sm-2>
                 <input id="textinput1" name="Password" type="text"
-                       value="${user.password}" class="form-control input-sm">
+                       value="${account.password}" class="form-control input-sm">
             </div>
             <div class=col-sm-2>
                 <input id="textinput2" name="Email" type="text"
-                       value="${user.email}" class="form-control input-sm">
+                       value="${account.email}" class="form-control input-sm">
             </div>
 
             <div class=col-sm-2>
                 <select id="role" name="fk_Role" class="form-control input-sm">
                     <c:forEach items="${roles}" var="role">
-                        <option value="${role.ID}" role=${role.ID} ${role.ID==user.fk_role?"selected":""}>
+                        <option value="${role.ID}" role=${role.ID} ${role.ID==account.fk_role?"selected":""}>
                                 ${role.roleName}
                         </option>
                     </c:forEach>
@@ -72,7 +72,7 @@
             <div class=col>
                 <button id="singlebutton2" name="singlebutton2"
                         class="btn btn-danger btn-sm"
-                        onclick="document.getElementById('user_id_${user.ID}').value=-document.getElementById('user_id_${user.ID}').value;"
+                        onclick="document.getElementById('user_id_${account.ID}').value=-document.getElementById('user_id_${account.ID}').value;"
                 >
                     Удалить
                 </button>
@@ -102,12 +102,12 @@
                 "<b>Role</b>"
                 } </td>
     </tr>
-    <c:forEach items="${userses}" var="user">
+    <c:forEach items="${userses}" var="account">
         <tr>
-            <td align="left"> ${user.login}</td>
-            <td align="left">${user.email}</td>
+            <td align="left"> ${account.login}</td>
+            <td align="left">${account.email}</td>
             <td align="center"><c:forEach items="${roles}" var="role">
-                <c:if test="${user.fk_role==role.ID}">${role.roleName}</c:if>
+                <c:if test="${account.fk_role==role.ID}">${role.roleName}</c:if>
             </c:forEach>
             </td>
         </tr>

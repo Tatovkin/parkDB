@@ -2,6 +2,6 @@ package by.academy.it.entities;
 
 public enum PlantType {
 
-    TREE, BUSH, FLOWER
+    P, T, B, F
 
 }

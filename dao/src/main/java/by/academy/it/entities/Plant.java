@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Plant implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -15,8 +16,6 @@ public class Plant implements Serializable {
     @Column
     private Integer serialNumber;
     @Column
-    private String type;
-    @Column
     private Double longitude;
     @Column
     private Double latitude;
@@ -24,10 +23,9 @@ public class Plant implements Serializable {
     public Plant() {
     }
 
-    public Plant(Integer id, Integer serialNumber, String type, Double longitude, Double latitude) {
+    public Plant(Integer id, Integer serialNumber, Double longitude, Double latitude) {
         this.id = id;
         this.serialNumber = serialNumber;
-        this.type = type;
         this.longitude = longitude;
         this.latitude = latitude;
     }
@@ -46,14 +44,6 @@ public class Plant implements Serializable {
 
     public void setSerialNumber(Integer serialNumber) {
         this.serialNumber = serialNumber;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public Double getLongitude() {
@@ -81,7 +71,6 @@ public class Plant implements Serializable {
 
         if (!id.equals(plant.id)) return false;
         if (!serialNumber.equals(plant.serialNumber)) return false;
-        if (!type.equals(plant.type)) return false;
         if (!longitude.equals(plant.longitude)) return false;
         if (!latitude.equals(plant.latitude)) return false;
 
@@ -92,7 +81,6 @@ public class Plant implements Serializable {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (serialNumber != null ? serialNumber.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (longitude != null ? longitude.hashCode() : 0);
         result = 31 * result + (latitude != null ? latitude.hashCode() : 0);
         return result;
@@ -100,7 +88,7 @@ public class Plant implements Serializable {
 
     @Override
     public String toString() {
-        return "Plant : id: " + id + " ser.№: " + serialNumber + " type: " + type +
+        return "Plant : id: " + id + " ser.№: " + serialNumber +
                 " Longitude: " + longitude + " Latitude: " + latitude;
     }
 }
