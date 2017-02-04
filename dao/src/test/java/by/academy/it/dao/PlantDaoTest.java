@@ -15,17 +15,10 @@ import java.util.Random;
 @FixMethodOrder(value = MethodSorters.JVM)
 public class PlantDaoTest extends TestCase {
 
-    private static PlantDao plantDao = null;
+    private static PlantDao dao = PlantDao.getDao();
     private static Logger log = Logger.getLogger(PlantDaoTest.class);
     private static Plant plant;
     private static Random random = new Random();
-
-    public static PlantDao getPlantDao() {
-        if (plantDao == null) {
-            plantDao = new PlantDao();
-        }
-        return plantDao;
-    }
 
     /**
      * Create the test case
@@ -61,7 +54,7 @@ public class PlantDaoTest extends TestCase {
         plant = getPlant();
 
         try {
-            getPlantDao().saveOrUpdate(plant);
+            dao.saveOrUpdate(plant);
         } catch (DaoException e) {
             log.error(e);
             throw new Error(e.getMessage());
@@ -81,7 +74,7 @@ public class PlantDaoTest extends TestCase {
 
         Plant updatedPlant = plant;
         try {
-            getPlantDao().saveOrUpdate(plant);
+            dao.saveOrUpdate(plant);
         } catch (DaoException e) {
             log.error(e);
             throw new Error(e.getMessage());

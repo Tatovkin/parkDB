@@ -1,6 +1,6 @@
 package by.academy.it.entities;
 
-public enum UserRole {
+public enum Role {
 
     DIRECTOR, FORESTER
 

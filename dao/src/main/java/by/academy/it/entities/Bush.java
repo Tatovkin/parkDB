@@ -1,5 +1,6 @@
 package by.academy.it.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -9,6 +10,7 @@ public class Bush extends Plant {
 
     private static final long serialVersionUID = 1L;
 
+    @Column(name = "CROWN")
     private String crown;
 
     public String getCrown() {

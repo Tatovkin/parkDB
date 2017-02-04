@@ -32,8 +32,8 @@
             </c:forEach></td>
 
             <td align="center">
-                <c:forEach items="${users}" var="user">
-                    <c:if test="${ad.fk_user==user.ID}">${user.login}</c:if>
+                <c:forEach items="${users}" var="account">
+                    <c:if test="${ad.fk_user==account.ID}">${account.login}</c:if>
                 </c:forEach></td>
             <td align="center"><c:forEach items="${priorities}" var="pri">
                 <c:if test="${ad.fk_priority==pri.ID}">${pri.priorityName}</c:if>

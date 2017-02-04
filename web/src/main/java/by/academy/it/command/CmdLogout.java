@@ -1,6 +1,6 @@
 package by.academy.it.command;
 
-import by.academy.it.entities.User;
+import by.academy.it.entities.Account;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,9 +10,9 @@ public class CmdLogout extends Action {
     @Override
     Action execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        Account account = (Account) session.getAttribute("account");
 
-        if (user != null) request.setAttribute(Messages.msgMessage, "login");
+        if (account != null) request.setAttribute(Messages.msgMessage, "login");
         request.getSession();
 
         if (Form.isPost(request) && Integer.valueOf(request.getParameter("LogoutButton")) == 1) {

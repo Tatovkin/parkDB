@@ -5,7 +5,7 @@
     <link href="css/mystyle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<legend>Профиль пользователя: ${user.login}</legend>
+<legend>Профиль пользователя: ${account.login}</legend>
 <fieldset>
     <h4>Открытые Вами заявки</h4>
     <div class="row">
