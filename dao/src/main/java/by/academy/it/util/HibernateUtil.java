@@ -13,6 +13,7 @@ package by.academy.it.util;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
@@ -23,6 +24,7 @@ public class HibernateUtil {
     private static Logger log = Logger.getLogger(HibernateUtil.class);
     private SessionFactory sessionFactory = null;
     private final ThreadLocal<Session> sessions = new ThreadLocal<>();
+    private final ThreadLocal<Transaction> transactions = new ThreadLocal<>();
 
     private HibernateUtil() {
         try {
@@ -38,6 +40,13 @@ public class HibernateUtil {
         }
     }
 
+    public static synchronized HibernateUtil getHibernateUtil() {
+        if (util == null) {
+            util = new HibernateUtil();
+        }
+        return util;
+    }
+
     public Session getSession() {
         Session session = sessions.get();
         if (session == null) {
@@ -47,10 +56,27 @@ public class HibernateUtil {
         return session;
     }
 
-    public static synchronized HibernateUtil getHibernateUtil() {
-        if (util == null) {
-            util = new HibernateUtil();
+    public void beginTransaction() {
+        Transaction transaction = transactions.get();
+        if (transaction == null) {
+            transaction = getSession().beginTransaction();
+            transactions.set(transaction);
         }
-        return util;
+    }
+
+    public void commit() {
+        Transaction transaction = transactions.get();
+        if (transaction != null) {
+            transaction.commit();
+            transactions.remove();
+        }
+    }
+
+    public void rollback() {
+        Transaction transaction = transactions.get();
+        if (transaction != null) {
+            transaction.rollback();
+            transactions.remove();
+        }
     }
 }

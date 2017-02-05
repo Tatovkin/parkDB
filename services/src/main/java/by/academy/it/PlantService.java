@@ -4,29 +4,26 @@ import by.academy.it.dao.PlantDao;
 import by.academy.it.dao.exceptions.DaoException;
 import by.academy.it.entities.Plant;
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.io.Serializable;
 
-public class PlantSevice implements IEntityService<Plant> {
+public class PlantService implements IEntityService<Plant> {
 
     private static PlantDao dao = PlantDao.getDao();
-    private static Logger log = Logger.getLogger(PlantSevice.class);
-    private Transaction transaction = null;
+    private static Logger log = Logger.getLogger(PlantService.class);
 
     @Override
     public Plant saveOrUpdate(Plant plant) {
         try {
-            Session session = util.getSession();
-            transaction = session.beginTransaction();
+            util.beginTransaction();
 
             dao.saveOrUpdate(plant);
-
             log.info("Save or update (commit):" + plant);
-            transaction.commit();
+
+            util.commit();
         } catch (DaoException e) {
             log.error(e.getMessage(), e);
+            util.rollback();
             return null;
         }
         return plant;
@@ -36,15 +33,15 @@ public class PlantSevice implements IEntityService<Plant> {
     public Plant get(Serializable id) {
         Plant plant = null;
         try {
-            Session session = util.getSession();
-            transaction = session.beginTransaction();
+            util.beginTransaction();
 
             plant = dao.get(id);
 
             log.info("Get (commit):" + plant);
-            transaction.commit();
+            util.commit();
         } catch (DaoException e) {
             log.error(e.getMessage(), e);
+            util.rollback();
             return null;
         }
         return plant;
@@ -54,15 +51,15 @@ public class PlantSevice implements IEntityService<Plant> {
     public Plant load(Serializable id) {
         Plant plant = null;
         try {
-            Session session = util.getSession();
-            transaction = session.beginTransaction();
+            util.beginTransaction();
 
             plant = dao.load(id);
-
             log.info("Load (commit):" + plant);
-            transaction.commit();
+
+            util.commit();
         } catch (DaoException e) {
             log.error(e.getMessage(), e);
+            util.rollback();
             return null;
         }
         return plant;
@@ -71,15 +68,15 @@ public class PlantSevice implements IEntityService<Plant> {
     @Override
     public boolean delete(Plant plant) {
         try {
-            Session session = util.getSession();
-            transaction = session.beginTransaction();
+            util.beginTransaction();
 
             dao.delete(plant);
-
             log.info("Delete (commit):" + plant);
-            transaction.commit();
+
+            util.commit();
         } catch (DaoException e) {
             log.error(e.getMessage(), e);
+            util.rollback();
             return false;
         }
         return true;

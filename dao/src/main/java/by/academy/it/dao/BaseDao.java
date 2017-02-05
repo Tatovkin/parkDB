@@ -15,8 +15,16 @@ public class BaseDao<T> implements Dao<T> {
 
     private static Logger log = Logger.getLogger(BaseDao.class);
     private static HibernateUtil util = HibernateUtil.getHibernateUtil();
+    private static BaseDao dao = null;
 
     public BaseDao() {
+    }
+
+    public static synchronized BaseDao getDao() {
+        if (dao == null) {
+            dao = new BaseDao();
+        }
+        return dao;
     }
 
     public T saveOrUpdate(T t) throws DaoException{
