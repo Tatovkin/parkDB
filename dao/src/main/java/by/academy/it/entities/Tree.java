@@ -1,11 +1,17 @@
 package by.academy.it.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @PrimaryKeyJoinColumn(name = "PLANT_ID")
 @DynamicInsert
@@ -17,19 +23,4 @@ public class Tree extends Plant {
     private String crown;
     private Trunk trunk;
 
-    public String getCrown() {
-        return crown;
-    }
-
-    public void setCrown(String crown) {
-        this.crown = crown;
-    }
-
-    public Trunk getTrunk() {
-        return trunk;
-    }
-
-    public void setTrunk(Trunk trunk) {
-        this.trunk = trunk;
-    }
 }
